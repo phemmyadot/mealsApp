@@ -1,13 +1,19 @@
-import { Platform, Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Colors from "../constants/colors";
-import { useContext } from "react";
-import { FavoritesContext } from "../store/context/favorites-context";
+import { useSelector, useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from "../store/redux/faviritesSlice";
 
 function FavoriteIcon({ mealId }) {
-  const { ids, addFavorite, removeFavorite } = useContext(FavoritesContext);
+  // const { ids, addFavorite, removeFavorite } = useContext(FavoritesContext);
+  const ids = useSelector((state) => state.favoriteMeals.ids);
+  const dispatch = useDispatch();
+
   function handleFavorite() {
-    ids.includes(mealId) ? removeFavorite(mealId) : addFavorite(mealId);
+    // ids.includes(mealId) ? removeFavorite(mealId) : addFavorite(mealId);
+    ids.includes(mealId)
+      ? dispatch(removeFavorite({ id: mealId }))
+      : dispatch(addFavorite({ id: mealId }));
   }
 
   return (
