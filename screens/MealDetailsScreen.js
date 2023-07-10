@@ -19,19 +19,11 @@ function MealDetailsScreen({ navigation, route }) {
     steps,
   } = meal;
 
-  function handleFavorite() {}
-
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "About the Meal",
       headerRight: () => {
-        return (
-          <FavoriteIcon
-            icon={"star"}
-            color={Colors.white}
-            onPress={handleFavorite}
-          />
-        );
+        return <FavoriteIcon mealId={mid} />;
       },
     });
   }, [mid, navigation]);
