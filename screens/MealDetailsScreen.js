@@ -23,7 +23,7 @@ function MealDetailsScreen({ navigation, route }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title,
+      title: "About the Meal",
       headerRight: () => {
         return (
           <FavoriteIcon
@@ -46,29 +46,28 @@ function MealDetailsScreen({ navigation, route }) {
             affordability={affordability}
             complexity={complexity}
             duration={duration}
+            textColor={Colors.primary200}
           />
           <View style={styles.list}>
             <Text style={styles.subTitle}>Ingredients</Text>
 
             {ingredients.map((i, idx) => (
-              <View
-                key={idx}
-                style={{ flexDirection: "row", alignItems: "center" }}
-              >
-                <Ionicons name="md-checkbox-outline" size={16}></Ionicons>
-                <Text style={{ marginLeft: 8 }}>{i}</Text>
+              <View key={idx} style={styles.listRow}>
+                <Ionicons
+                  name="md-checkbox-outline"
+                  size={16}
+                  style={styles.text}
+                ></Ionicons>
+                <Text style={styles.text}>{i}</Text>
               </View>
             ))}
           </View>
           <View style={styles.list}>
             <Text style={styles.subTitle}>Steps</Text>
             {steps.map((s, i) => (
-              <View
-                style={{ flexDirection: "row", alignItems: "center" }}
-                key={i}
-              >
-                <Text>{i + 1}.</Text>
-                <Text style={{ marginLeft: 8 }}>{s}</Text>
+              <View style={styles.listRow} key={i}>
+                <Text style={styles.text}>{i + 1}.</Text>
+                <Text style={styles.text}>{s}</Text>
               </View>
             ))}
           </View>
@@ -79,7 +78,7 @@ function MealDetailsScreen({ navigation, route }) {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.primary800,
     overflow: "hidden",
     flex: 1,
   },
@@ -99,13 +98,23 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 24,
+    color: Colors.accent600,
     paddingHorizontal: 16,
     marginVertical: 16,
   },
   subTitle: {
     fontWeight: "bold",
+    color: Colors.primary200,
     fontSize: 18,
     marginBottom: 4,
+  },
+  text: {
+    color: Colors.primary200,
+    marginLeft: 8,
+  },
+  listRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
   },
 });
 export default MealDetailsScreen;
