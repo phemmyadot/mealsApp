@@ -5,7 +5,6 @@ import Colors from "../constants/colors";
 import { useSelector } from "react-redux";
 
 function FavoritesScreen() {
-  //   const { ids } = useContext(FavoritesContext);
   const ids = useSelector((state) => state.favoriteMeals.ids);
 
   const favoriteMeals = MEALS.filter((meal) => ids.includes(meal.id));
